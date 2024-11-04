@@ -122,6 +122,15 @@ class JsonPlusSerializer(SerializerProtocol):
             return self._encode_constructor_args(
                 obj.__class__, kwargs={"node": obj.node, "arg": obj.arg}
             )
+        elif isinstance(obj, ControlProtocol):
+            return self._encode_constructor_args(
+                obj.__class__,
+                kwargs={
+                    "update_state": obj.update_state,
+                    "trigger": obj.trigger,
+                    "send": obj.send,
+                },
+            )
         elif isinstance(obj, (bytes, bytearray)):
             return self._encode_constructor_args(
                 obj.__class__, method="fromhex", args=(obj.hex(),)

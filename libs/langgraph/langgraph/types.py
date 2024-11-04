@@ -112,7 +112,7 @@ class Interrupt:
 class PregelTask(NamedTuple):
     id: str
     name: str
-    path: tuple[Union[str, int], ...]
+    path: tuple[Union[str, int, tuple], ...]
     error: Optional[Exception] = None
     interrupts: tuple[Interrupt, ...] = ()
     state: Union[None, RunnableConfig, "StateSnapshot"] = None
@@ -129,7 +129,7 @@ class PregelExecutableTask(NamedTuple):
     retry_policy: Optional[RetryPolicy]
     cache_policy: Optional[CachePolicy]
     id: str
-    path: tuple[Union[str, int], ...]
+    path: tuple[Union[str, int, tuple], ...]
     scheduled: bool = False
 
 
